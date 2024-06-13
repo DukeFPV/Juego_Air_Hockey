@@ -50,10 +50,14 @@ class Mesa {
   PVector checkCollision(PVector position, float radius) {
     PVector normal = null;
 
-    if (position.y - radius < y0 + strokeW + r) normal = new PVector(0, -1);
-    if (position.y + radius > y0 + wy - strokeW) normal = new PVector(0, 1);
-    if (position.x - radius < x0 + strokeW) normal = new PVector(-1, 0);
-    if (position.x + radius > x0 + wx - strokeW) normal = new PVector(1, 0);
+    if (position.y - radius + radius/2 < y0 + strokeW + r) normal = new PVector(0, -1);//Arriba
+    
+    if (position.y + radius + radius/2 > y0 + wy - strokeW) normal = new PVector(0, 1);//Abajo
+    
+    if (position.x - radius + radius/2 < x0 + strokeW) normal = new PVector(-1, 0); //Derecha
+    
+    if (position.x + radius + radius/2 > x0 + wx - strokeW) normal = new PVector(1, 0); //Izquierda
+    
     return normal;
   }
 }

@@ -6,7 +6,6 @@ class Paddle {
   float ychange;
   float easing = 0.05;
   boolean controlRaton;
-  float paddleSpeed;
 
   Paddle(boolean isLeft, boolean controlRaton) {
     r = 50;
@@ -25,18 +24,13 @@ class Paddle {
       mousePosition.x = constrain(mousePosition.x, 125 + r, height - r - 175);
       mousePosition.y = constrain(mousePosition.y, 100 - r/2, 675 - r);
     }
-    // Calculate the speed of the paddle
-    paddleSpeed = controlRaton ? PVector.dist(mousePosition, new PVector(mouseX, mouseY)) : abs(ychange);
+
     fill(255);
     ellipse(mousePosition.x, mousePosition.y, r, r);
     // Update position to mousePosition
     position = mousePosition.copy();
-    //println(paddleSpeed);
-  }
 
-  //void move(float steps) {
-  //  ychange = steps;
-  //}
+  }
 
   void show() {
     
@@ -50,7 +44,7 @@ void checkCollision(Puck puck) {
   float distanceVectMag = distanceVect.mag();
 
   // Minimum distance before they are touching
-  float minDistance = r + puck.radius;
+  float minDistance = r+r/2 + puck.radius;
 
   if (distanceVectMag < minDistance) {
     float distanceCorrection = (minDistance-distanceVectMag)/2.0;

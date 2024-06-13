@@ -24,6 +24,7 @@ class Puck {
   void edges(Mesa table) {
     PVector normal = table.checkCollision(position, radius);
     if (normal != null) {
+      println(normal);
       reflect(normal);
     }
   }
